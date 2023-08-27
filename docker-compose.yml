@@ -1,0 +1,28 @@
+# https://docs.docker.com/compose/compose-file/compose-versioning/
+version: "3.8"
+
+services:
+  db:
+    # https://hub.docker.com/_/postgres  15.4-alpineを採用
+    image: postgres:15.4-alpine
+    environment:
+      TZ: UTC
+      PGTZ: UTC
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - "./api/tmp/db:/var/lib/postgresql/data"
+
+  api:
+    build:
+      context: ./api
+      args:
+        WORKDIR: $WORKDIR
+    environment:
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      API_DOMAIN: "localhost:$FRONT_PORT"
+    volumes:
+      - "./api:/$WORKDIR"
+    depends_on:
+      - db
+    ports:
+      - "$API_PORT:$CONTAINER_PORT"
