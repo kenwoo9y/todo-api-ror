@@ -11,13 +11,18 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    # Railsアプリのタイムゾーン
+    # Dockerfileで設定した環境変数のタイムゾーンを取得
+    config.time_zone = ENV["TZ"]
+
+    # データベースの読み書きに使用するタイムゾーンの指定
+    config.active_record.default_timezone = :utc
+
+    # i18nで使われるデフォルトのロケールファイルの指定
+    config.i18n.default_locale = :ja
+
+    # $LOAD_PATHにautoload pathを追加しない(Zeitwerk有効時false推奨)
+    config.add_autoload_paths_to_load_path = false
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
