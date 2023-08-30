@@ -24,6 +24,3 @@ RUN apk update && \
     apk del build-dependencies
 
 COPY . .
-
-# 仮想環境で起動したRailsは、localhostのipアドレス「127.0.0.1」でアクセスできないため、仮想環境外部からアクセスできるように、localhostのipアドレス「127.0.0.1」を「0.0.0.0」にバインド
-CMD ["rails", "server", "-b", "0.0.0.0"]

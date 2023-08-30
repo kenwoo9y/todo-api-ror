@@ -17,6 +17,8 @@ services:
       context: ./api
       args:
         WORKDIR: $WORKDIR
+    # 仮想環境で起動したRailsは、localhostのipアドレス「127.0.0.1」でアクセスできないため、仮想環境外部からアクセスできるように、localhostのipアドレス「127.0.0.1」を「0.0.0.0」にバインド
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       API_DOMAIN: "localhost:$FRONT_PORT"
