@@ -48,6 +48,9 @@ group :development, :test do
 
   # デバッグbinding.pry https://github.com/deivid-rodriguez/pry-byebug
   gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
+
+  # RSpec https://rubygems.org/gems/rspec-rails
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
 end
 
 group :development do
