@@ -51,6 +51,9 @@ group :development, :test do
 
   # RSpec https://rubygems.org/gems/rspec-rails
   gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
+
+  # factory_bot_rails https://rubygems.org/gems/factory_bot_rails
+  gem 'factory_bot_rails', '~> 6.2'
 end
 
 group :development do
