@@ -22,6 +22,7 @@ services:
     environment:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       API_DOMAIN: "localhost:$FRONT_PORT"
+      APP_URL: "http://localhost:$API_PORT"
     volumes:
       - "./api:/$WORKDIR"
     depends_on:
